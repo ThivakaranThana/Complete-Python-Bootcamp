@@ -1,0 +1,21 @@
+% curl -X GET http://127.0.0.1:5000/items
+    [{"description":"This is item 1","id":1,"name":"item1"},{"description":"This is item 2","id":2,"name":"item2"},
+    {"description":"This is item 3","id":3,"name":"item3"},{"description":"This is item 3","id":4,"name":"item3"}]
+
+
+% curl -X POST -H "Content-Type: application/json" -d '{"name": "item3", "description": "This is item 3" }' http://127.0.0.1:5000/items
+    [{"description":"This is item 1","id":1,"name":"item1"},{"description":"This is item 2","id":2,"name":"item2"},
+    {"description":"This is item 3","id":3,"name":"item3"},{"description":"This is item 3","id":4,"name":"item3"},
+    {"description":"This is item 3","id":5,"name":"item3"}]
+
+%curl -X PUT -H "Content-Type: application/json" -d '{"name": "item3", "description": "This is altered item 3" }' http://127.0.0.1:5000/items/3
+    {"description":"This is altered item 3","id":3,"name":"item3"}
+
+% curl -X GET -H "Content-Type: application/json" -d '{"name": "item3", "description": "This is item 3" }' http://127.0.0.1:5000/items
+    [{"description":"This is item 1","id":1,"name":"item1"},{"description":"This is item 2","id":2,"name":"item2"},{"description":"This is altered item 3","id":3,"name":"item3"}]
+
+% curl -X DELETE -H "Content-Type: application/json" -d '{"name": "item3", "description": "This is altered item 3" }' http://127.0.0.1:5000/items/3  
+    {"result":"Item deleted"}
+
+% curl -X GET -H "Content-Type: application/json" -d '{"name": "item3", "description": "This is item 3" }' http://127.0.0.1:5000/items
+    [{"description":"This is item 1","id":1,"name":"item1"},{"description":"This is item 2","id":2,"name":"item2"}]
